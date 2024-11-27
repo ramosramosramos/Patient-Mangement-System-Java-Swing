@@ -1,9 +1,14 @@
 package Tools;
 
+import java.awt.HeadlessException;
 import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import raven.toast.Notifications;
 
 /**
  *
@@ -58,6 +63,25 @@ public class IP {
         }
         return null;
 
+    }
+    
+     public static void Notify(String SEND_TO, String MESSSAGE, boolean appear) {
+         InputStream inputStream;
+        String FINAL_MESSAGE = MESSSAGE.replaceAll("\\s", "+");
+        try {
+
+            String link = "http://" + getIPAddress() + ":8080/v1/sms/send/?phone=" + SEND_TO
+                    + "&message=" + FINAL_MESSAGE;
+            URL url = new URL(link);
+            inputStream = url.openStream();
+            inputStream.close();
+            if (appear == true) {
+              Notifications.getInstance().show(Notifications.Type.SUCCESS, Notifications.Location.TOP_LEFT, "Notif has been sent");
+            }
+
+        } catch (IOException | HeadlessException e) {
+            System.err.println(e.getMessage());
+        }
     }
 
 }

@@ -61,18 +61,18 @@ public class Create extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(0, 0, 51));
-        jButton2.setText("ADD PATIENT");
+        jButton2.setText("CREATE");
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 420, 190, 40));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 430, 130, 30));
 
         name_label.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         name_label.setForeground(new java.awt.Color(204, 204, 204));
-        name_label.setText("Create");
+        name_label.setText("Add patient");
         name_label.setPreferredSize(new java.awt.Dimension(190, 50));
         jPanel1.add(name_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, -1, -1));
 

@@ -30,7 +30,8 @@ public final class Index extends javax.swing.JFrame {
         leftPanel = new javax.swing.JPanel();
         rightPanel = new javax.swing.JPanel();
         bottomPanel = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        add_patient_button = new javax.swing.JButton();
+        add_appointment_button = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         tabbedPane = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
@@ -43,6 +44,13 @@ public final class Index extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        appointmentBodypanel = new javax.swing.JPanel();
+        jPanel8 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -87,12 +95,21 @@ public final class Index extends javax.swing.JFrame {
 
         getContentPane().add(rightPanel, java.awt.BorderLayout.LINE_END);
 
-        jButton1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 51));
-        jButton1.setText("ADD PATIENT");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        add_patient_button.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        add_patient_button.setForeground(new java.awt.Color(0, 0, 51));
+        add_patient_button.setText("ADD PATIENT");
+        add_patient_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                add_patient_buttonActionPerformed(evt);
+            }
+        });
+
+        add_appointment_button.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        add_appointment_button.setForeground(new java.awt.Color(0, 0, 51));
+        add_appointment_button.setText("ADD APPOINTMENT");
+        add_appointment_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                add_appointment_buttonActionPerformed(evt);
             }
         });
 
@@ -102,14 +119,18 @@ public final class Index extends javax.swing.JFrame {
             bottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bottomPanelLayout.createSequentialGroup()
                 .addGap(99, 99, 99)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(925, Short.MAX_VALUE))
+                .addComponent(add_patient_button, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(add_appointment_button, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(731, Short.MAX_VALUE))
         );
         bottomPanelLayout.setVerticalGroup(
             bottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bottomPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(bottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(add_patient_button, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(add_appointment_button, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(52, Short.MAX_VALUE))
         );
 
@@ -165,16 +186,43 @@ public final class Index extends javax.swing.JFrame {
 
         tabbedPane.addTab("Patients", jPanel3);
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 995, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 461, Short.MAX_VALUE)
-        );
+        jPanel4.setLayout(new java.awt.BorderLayout());
+
+        jScrollPane2.setPreferredSize(new java.awt.Dimension(993, 100));
+
+        appointmentBodypanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 2, 2));
+
+        jPanel8.setBackground(new java.awt.Color(0, 0, 51));
+        jPanel8.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 0, 5, 0, new java.awt.Color(255, 255, 255)));
+        jPanel8.setForeground(new java.awt.Color(0, 0, 51));
+        jPanel8.setPreferredSize(new java.awt.Dimension(993, 60));
+
+        jLabel7.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel7.setText("Name");
+        jLabel7.setPreferredSize(new java.awt.Dimension(190, 50));
+        jPanel8.add(jLabel7);
+
+        jLabel8.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel8.setText("Phone number");
+        jLabel8.setPreferredSize(new java.awt.Dimension(190, 50));
+        jPanel8.add(jLabel8);
+
+        jLabel10.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel10.setText("Date");
+        jLabel10.setPreferredSize(new java.awt.Dimension(190, 50));
+        jPanel8.add(jLabel10);
+
+        jLabel11.setPreferredSize(new java.awt.Dimension(140, 14));
+        jPanel8.add(jLabel11);
+
+        appointmentBodypanel.add(jPanel8);
+
+        jScrollPane2.setViewportView(appointmentBodypanel);
+
+        jPanel4.add(jScrollPane2, java.awt.BorderLayout.CENTER);
 
         tabbedPane.addTab("Appointments", jPanel4);
 
@@ -225,10 +273,15 @@ public final class Index extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void add_patient_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_patient_buttonActionPerformed
         onGlass();
         new Forms.Patient.Create(this).setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_add_patient_buttonActionPerformed
+
+    private void add_appointment_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_appointment_buttonActionPerformed
+        onGlass();
+        new Forms.Appointment.Create(this).setVisible(true);
+    }//GEN-LAST:event_add_appointment_buttonActionPerformed
 
     public static void main(String args[]) {
         FlatLightLaf.setup();
@@ -266,14 +319,20 @@ public final class Index extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton add_appointment_button;
+    private javax.swing.JButton add_patient_button;
+    private javax.swing.JPanel appointmentBodypanel;
     private javax.swing.JPanel bottomPanel;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -281,7 +340,9 @@ public final class Index extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel leftPanel;
     private javax.swing.JPanel patientBodypanel;
     private javax.swing.JPanel rightPanel;
@@ -303,11 +364,43 @@ public final class Index extends javax.swing.JFrame {
                 String address = rs.getString("address");
                 String guardian = rs.getString("guardian");
                 String birthdate = rs.getString("birthdate");
-                patientBodypanel.add(new Cards.TableCardPatientData(id, name, phone, address, guardian,birthdate,this));
+                patientBodypanel.add(new Cards.TableCardPatientData(id, name, phone, address, guardian, birthdate, this));
                 patientBodypanel.repaint();
                 patientBodypanel.revalidate();
             }
             patientBodypanel.setPreferredSize(new Dimension(993, height));
+            getAppointments();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void getAppointments() {
+        appointmentBodypanel.removeAll();
+        appointmentBodypanel.add(new Cards.TableCardAppointmentHead());
+        try (PreparedStatement pst = conn.prepareStatement(""
+                + "Select "
+                + "a.id as 'id' ,"
+                + "p.name,"
+                + "a.patient_id,"
+                + "p.phone,"
+                + "a.date"
+                + " from appointments a join patients p on p.id = a.patient_id order by id desc")) {
+            ResultSet rs = pst.executeQuery();
+            int height = 65;
+            while (rs.next()) {
+                height += 65;
+                String id = rs.getString("id");
+                String patient_id = rs.getString("patient_id");
+                String name = rs.getString("name");
+                String phone = rs.getString("phone");
+                String date = rs.getString("date");
+       
+                appointmentBodypanel.add(new Cards.TableCardAppointmentData(id, patient_id, name, phone, date, this));
+                appointmentBodypanel.repaint();
+                appointmentBodypanel.revalidate();
+            }
+            appointmentBodypanel.setPreferredSize(new Dimension(993, height));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

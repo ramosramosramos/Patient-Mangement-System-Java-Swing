@@ -89,11 +89,11 @@ public class Edit extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 420, 190, 40));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 430, 110, 30));
 
         name_label.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         name_label.setForeground(new java.awt.Color(204, 204, 204));
-        name_label.setText("Edit");
+        name_label.setText("Edit patient");
         name_label.setPreferredSize(new java.awt.Dimension(190, 50));
         jPanel1.add(name_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, -1, -1));
 
@@ -179,14 +179,14 @@ public class Edit extends javax.swing.JFrame {
 
         jButton3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(0, 0, 51));
-        jButton3.setText("UPDATE");
+        jButton3.setText("SAVE");
         jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 420, 190, 40));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 430, 100, 30));
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
