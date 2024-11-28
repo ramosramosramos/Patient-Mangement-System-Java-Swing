@@ -4,6 +4,7 @@ import com.formdev.flatlaf.FlatLightLaf;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 import raven.toast.Notifications;
 
 public final class Edit extends javax.swing.JFrame {
@@ -51,6 +52,7 @@ public final class Edit extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         treatment_plan_field = new javax.swing.JTextArea();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -147,6 +149,18 @@ public final class Edit extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 380, 420, -1));
 
+        jButton3.setBackground(new java.awt.Color(204, 0, 0));
+        jButton3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(204, 204, 204));
+        jButton3.setText("DELETE");
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 517, -1, 30));
+
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         setSize(new java.awt.Dimension(974, 554));
@@ -164,6 +178,25 @@ public final class Edit extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        int ask = JOptionPane.showConfirmDialog(null, "Are you sure you want to remove this medical record?");
+        if (ask == JOptionPane.YES_OPTION) {
+            try (PreparedStatement pst = conn.prepareStatement("Delete from medical_records where id = ?")) {
+                pst.setString(1, id);
+                pst.execute();
+                Notifications.getInstance().show(Notifications.Type.SUCCESS, Notifications.Location.TOP_CENTER, "Succcessfull deleted!");
+                index.setEnabled(true);
+                index.offGlass();
+                index.getMedicalRecords();
+                dispose();
+
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     public static void main(String args[]) {
         FlatLightLaf.setup();
         java.awt.EventQueue.invokeLater(() -> {
@@ -177,6 +210,7 @@ public final class Edit extends javax.swing.JFrame {
     private javax.swing.JTextArea diagnosis_field;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

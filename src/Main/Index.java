@@ -89,6 +89,11 @@ public final class Index extends javax.swing.JFrame {
         viewItem.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         viewItem.setForeground(new java.awt.Color(204, 204, 204));
         viewItem.setText("View medical record");
+        viewItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewItemActionPerformed(evt);
+            }
+        });
         medicalRecordPop.add(viewItem);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -330,8 +335,8 @@ public final class Index extends javax.swing.JFrame {
         jPanel5.add(search_medical_record_field, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 290, 30));
 
         jLabel12.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel12.setText("Use this to search medical record 's  patient name,diagnosis,description,prescription,treatment plan or created at");
-        jPanel5.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 570, 40));
+        jLabel12.setText("Use this to search medical record 's  patient name,diagnosis,description,prescription,treatment plan or recorder at");
+        jPanel5.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 690, 40));
 
         jPanel6.add(jPanel5, java.awt.BorderLayout.PAGE_START);
 
@@ -422,6 +427,16 @@ public final class Index extends javax.swing.JFrame {
         onGlass();
     new Forms.MedicalRecord.Edit(id, patient_id, name, description, diagnosis, prescription, treatment, this).setVisible(true);
     }//GEN-LAST:event_editItemActionPerformed
+
+    private void viewItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewItemActionPerformed
+        String name = medical_records_table.getValueAt(medical_records_table.getSelectedRow(), 2).toString();
+        String description  = medical_records_table.getValueAt(medical_records_table.getSelectedRow(), 3).toString();
+        String diagnosis  = medical_records_table.getValueAt(medical_records_table.getSelectedRow(), 4).toString();
+        String prescription  = medical_records_table.getValueAt(medical_records_table.getSelectedRow(), 5).toString();
+        String treatment  = medical_records_table.getValueAt(medical_records_table.getSelectedRow(), 6).toString();
+        onGlass();
+    new Forms.MedicalRecord.Show(name, description, diagnosis, prescription, treatment, this).setVisible(true);
+    }//GEN-LAST:event_viewItemActionPerformed
     
     public static void main(String args[]) {
         FlatLightLaf.setup();
@@ -588,6 +603,7 @@ public final class Index extends javax.swing.JFrame {
     }
     
     public void getMedicalRecords() {
+        medical_records_table.removeAll();
         String search = search_medical_record_field.getText().trim();
         String sql = "";
         if (!search.isEmpty()) {

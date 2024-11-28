@@ -186,7 +186,7 @@ public class Edit extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 430, 100, 30));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 430, 100, 30));
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
