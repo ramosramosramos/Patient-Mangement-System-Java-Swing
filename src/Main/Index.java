@@ -9,23 +9,26 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import net.proteanit.sql.DbUtils;
+import raven.toast.Notifications;
 
 public final class Index extends javax.swing.JFrame {
-    
+
     Connection conn = null;
-    
+
     public Index() {
         initComponents();
         otherComponent();
         getPatients();
         getMedicalRecords();
-        
+        getAppointmentHistories();
+
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -33,6 +36,9 @@ public final class Index extends javax.swing.JFrame {
         medicalRecordPop = new javax.swing.JPopupMenu();
         editItem = new javax.swing.JMenuItem();
         viewItem = new javax.swing.JMenuItem();
+        historyPop = new javax.swing.JPopupMenu();
+        deleteHistory = new javax.swing.JMenuItem();
+        undoneHistory = new javax.swing.JMenuItem();
         topPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         leftPanel = new javax.swing.JPanel();
@@ -73,6 +79,11 @@ public final class Index extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         medical_records_table = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
+        jPanel11 = new javax.swing.JPanel();
+        search_appointment_histories_field = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        appointment_histories_table = new javax.swing.JTable();
 
         medicalRecordPop.setBackground(new java.awt.Color(0, 0, 51));
 
@@ -96,20 +107,43 @@ public final class Index extends javax.swing.JFrame {
         });
         medicalRecordPop.add(viewItem);
 
+        historyPop.setBackground(new java.awt.Color(0, 0, 51));
+
+        deleteHistory.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        deleteHistory.setForeground(new java.awt.Color(204, 204, 204));
+        deleteHistory.setText("Delete");
+        deleteHistory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteHistoryActionPerformed(evt);
+            }
+        });
+        historyPop.add(deleteHistory);
+
+        undoneHistory.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        undoneHistory.setForeground(new java.awt.Color(204, 204, 204));
+        undoneHistory.setText("Mark as undone");
+        undoneHistory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                undoneHistoryActionPerformed(evt);
+            }
+        });
+        historyPop.add(undoneHistory);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        topPanel.setBackground(new java.awt.Color(0, 0, 51));
+        topPanel.setBackground(new java.awt.Color(51, 51, 51));
         topPanel.setPreferredSize(new java.awt.Dimension(1200, 60));
 
-        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(204, 204, 204));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Doctor Management System");
+        jLabel1.setText("Doctor's Management System");
         jLabel1.setPreferredSize(new java.awt.Dimension(1000, 60));
         topPanel.add(jLabel1);
 
         getContentPane().add(topPanel, java.awt.BorderLayout.PAGE_START);
 
+        leftPanel.setBackground(new java.awt.Color(51, 51, 51));
         leftPanel.setPreferredSize(new java.awt.Dimension(50, 489));
 
         javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
@@ -125,6 +159,7 @@ public final class Index extends javax.swing.JFrame {
 
         getContentPane().add(leftPanel, java.awt.BorderLayout.LINE_START);
 
+        rightPanel.setBackground(new java.awt.Color(51, 51, 51));
         rightPanel.setPreferredSize(new java.awt.Dimension(50, 489));
 
         javax.swing.GroupLayout rightPanelLayout = new javax.swing.GroupLayout(rightPanel);
@@ -140,8 +175,11 @@ public final class Index extends javax.swing.JFrame {
 
         getContentPane().add(rightPanel, java.awt.BorderLayout.LINE_END);
 
+        bottomPanel.setBackground(new java.awt.Color(51, 51, 51));
+
+        add_patient_button.setBackground(new java.awt.Color(51, 51, 51));
         add_patient_button.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        add_patient_button.setForeground(new java.awt.Color(0, 0, 51));
+        add_patient_button.setForeground(new java.awt.Color(204, 204, 204));
         add_patient_button.setText("ADD PATIENT");
         add_patient_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -149,8 +187,9 @@ public final class Index extends javax.swing.JFrame {
             }
         });
 
+        add_appointment_button.setBackground(new java.awt.Color(51, 51, 51));
         add_appointment_button.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        add_appointment_button.setForeground(new java.awt.Color(0, 0, 51));
+        add_appointment_button.setForeground(new java.awt.Color(204, 204, 204));
         add_appointment_button.setText("ADD APPOINTMENT");
         add_appointment_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -158,8 +197,9 @@ public final class Index extends javax.swing.JFrame {
             }
         });
 
+        add_appointment_button1.setBackground(new java.awt.Color(51, 51, 51));
         add_appointment_button1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        add_appointment_button1.setForeground(new java.awt.Color(0, 0, 51));
+        add_appointment_button1.setForeground(new java.awt.Color(204, 204, 204));
         add_appointment_button1.setText("ADD MEDICAL RECORD");
         add_appointment_button1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -172,23 +212,23 @@ public final class Index extends javax.swing.JFrame {
         bottomPanelLayout.setHorizontalGroup(
             bottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bottomPanelLayout.createSequentialGroup()
-                .addGap(55, 55, 55)
+                .addGap(57, 57, 57)
                 .addComponent(add_patient_button, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(add_appointment_button, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(add_appointment_button1)
-                .addContainerGap(543, Short.MAX_VALUE))
+                .addContainerGap(541, Short.MAX_VALUE))
         );
         bottomPanelLayout.setVerticalGroup(
             bottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(bottomPanelLayout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bottomPanelLayout.createSequentialGroup()
+                .addContainerGap(34, Short.MAX_VALUE)
                 .addGroup(bottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(add_patient_button, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(add_appointment_button, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(add_appointment_button1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addGap(29, 29, 29))
         );
 
         getContentPane().add(bottomPanel, java.awt.BorderLayout.PAGE_END);
@@ -199,17 +239,20 @@ public final class Index extends javax.swing.JFrame {
 
         jPanel3.setLayout(new java.awt.BorderLayout());
 
-        jPanel9.setBackground(new java.awt.Color(0, 0, 51));
+        jPanel9.setBackground(new java.awt.Color(51, 51, 51));
         jPanel9.setPreferredSize(new java.awt.Dimension(1095, 60));
         jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        search_patient_field.setBackground(new java.awt.Color(51, 51, 51));
         search_patient_field.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        search_patient_field.setForeground(new java.awt.Color(204, 204, 204));
+        search_patient_field.setCaretColor(new java.awt.Color(153, 153, 153));
         search_patient_field.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 search_patient_fieldKeyTyped(evt);
             }
         });
-        jPanel9.add(search_patient_field, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 290, 30));
+        jPanel9.add(search_patient_field, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 290, 30));
 
         jLabel9.setForeground(new java.awt.Color(153, 153, 153));
         jLabel9.setText("Use this to search patient name,phone number or guardian.");
@@ -219,10 +262,11 @@ public final class Index extends javax.swing.JFrame {
 
         jScrollPane1.setPreferredSize(new java.awt.Dimension(993, 100));
 
+        patientBodypanel.setBackground(new java.awt.Color(51, 51, 51));
         patientBodypanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 2, 2));
 
-        jPanel7.setBackground(new java.awt.Color(0, 0, 51));
-        jPanel7.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 0, 5, 0, new java.awt.Color(255, 255, 255)));
+        jPanel7.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel7.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 1, 0, new java.awt.Color(102, 102, 102)));
         jPanel7.setForeground(new java.awt.Color(0, 0, 51));
         jPanel7.setPreferredSize(new java.awt.Dimension(1100, 60));
 
@@ -263,17 +307,20 @@ public final class Index extends javax.swing.JFrame {
 
         jPanel4.setLayout(new java.awt.BorderLayout());
 
-        jPanel10.setBackground(new java.awt.Color(0, 0, 51));
+        jPanel10.setBackground(new java.awt.Color(51, 51, 51));
         jPanel10.setPreferredSize(new java.awt.Dimension(1095, 60));
         jPanel10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        search_appointment_field.setBackground(new java.awt.Color(51, 51, 51));
         search_appointment_field.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        search_appointment_field.setForeground(new java.awt.Color(204, 204, 204));
+        search_appointment_field.setCaretColor(new java.awt.Color(153, 153, 153));
         search_appointment_field.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 search_appointment_fieldKeyTyped(evt);
             }
         });
-        jPanel10.add(search_appointment_field, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 290, 30));
+        jPanel10.add(search_appointment_field, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 290, 30));
 
         jLabel13.setBackground(new java.awt.Color(204, 204, 204));
         jLabel13.setForeground(new java.awt.Color(153, 153, 153));
@@ -284,10 +331,11 @@ public final class Index extends javax.swing.JFrame {
 
         jScrollPane2.setPreferredSize(new java.awt.Dimension(993, 100));
 
+        appointmentBodypanel.setBackground(new java.awt.Color(51, 51, 51));
         appointmentBodypanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 2, 2));
 
-        jPanel8.setBackground(new java.awt.Color(0, 0, 51));
-        jPanel8.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 0, 5, 0, new java.awt.Color(255, 255, 255)));
+        jPanel8.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel8.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(102, 102, 102)));
         jPanel8.setForeground(new java.awt.Color(0, 0, 51));
         jPanel8.setPreferredSize(new java.awt.Dimension(1100, 60));
 
@@ -322,17 +370,20 @@ public final class Index extends javax.swing.JFrame {
 
         jPanel6.setLayout(new java.awt.BorderLayout());
 
-        jPanel5.setBackground(new java.awt.Color(0, 0, 51));
+        jPanel5.setBackground(new java.awt.Color(51, 51, 51));
         jPanel5.setPreferredSize(new java.awt.Dimension(1095, 60));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        search_medical_record_field.setBackground(new java.awt.Color(51, 51, 51));
         search_medical_record_field.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        search_medical_record_field.setForeground(new java.awt.Color(204, 204, 204));
+        search_medical_record_field.setCaretColor(new java.awt.Color(153, 153, 153));
         search_medical_record_field.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 search_medical_record_fieldKeyTyped(evt);
             }
         });
-        jPanel5.add(search_medical_record_field, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 290, 30));
+        jPanel5.add(search_medical_record_field, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 290, 30));
 
         jLabel12.setForeground(new java.awt.Color(153, 153, 153));
         jLabel12.setText("Use this to search medical record 's  patient name,diagnosis,description,prescription,treatment plan or recorder at");
@@ -362,18 +413,50 @@ public final class Index extends javax.swing.JFrame {
 
         tabbedPane.addTab("Medical records", jPanel6);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1095, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 497, Short.MAX_VALUE)
-        );
+        jPanel2.setLayout(new java.awt.BorderLayout());
 
-        tabbedPane.addTab("Notifications", jPanel2);
+        jPanel11.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel11.setPreferredSize(new java.awt.Dimension(1095, 60));
+        jPanel11.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        search_appointment_histories_field.setBackground(new java.awt.Color(51, 51, 51));
+        search_appointment_histories_field.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        search_appointment_histories_field.setForeground(new java.awt.Color(204, 204, 204));
+        search_appointment_histories_field.setCaretColor(new java.awt.Color(153, 153, 153));
+        search_appointment_histories_field.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                search_appointment_histories_fieldKeyTyped(evt);
+            }
+        });
+        jPanel11.add(search_appointment_histories_field, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 290, 30));
+
+        jLabel14.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel14.setText("Use this to search appointment history's patient ID, name,phone number or date.");
+        jPanel11.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 690, 40));
+
+        jPanel2.add(jPanel11, java.awt.BorderLayout.PAGE_START);
+
+        appointment_histories_table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        appointment_histories_table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                appointment_histories_tableMousePressed(evt);
+            }
+        });
+        jScrollPane4.setViewportView(appointment_histories_table);
+
+        jPanel2.add(jScrollPane4, java.awt.BorderLayout.CENTER);
+
+        tabbedPane.addTab("Appointment history", jPanel2);
 
         jPanel1.add(tabbedPane, java.awt.BorderLayout.PAGE_START);
 
@@ -417,57 +500,98 @@ public final class Index extends javax.swing.JFrame {
     }//GEN-LAST:event_medical_records_tableMousePressed
 
     private void editItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editItemActionPerformed
-        String id  = medical_records_table.getValueAt(medical_records_table.getSelectedRow(), 0).toString();
+        String id = medical_records_table.getValueAt(medical_records_table.getSelectedRow(), 0).toString();
         String patient_id = medical_records_table.getValueAt(medical_records_table.getSelectedRow(), 1).toString();
         String name = medical_records_table.getValueAt(medical_records_table.getSelectedRow(), 2).toString();
-        String description  = medical_records_table.getValueAt(medical_records_table.getSelectedRow(), 3).toString();
-        String diagnosis  = medical_records_table.getValueAt(medical_records_table.getSelectedRow(), 4).toString();
-        String prescription  = medical_records_table.getValueAt(medical_records_table.getSelectedRow(), 5).toString();
-        String treatment  = medical_records_table.getValueAt(medical_records_table.getSelectedRow(), 6).toString();
+        String description = medical_records_table.getValueAt(medical_records_table.getSelectedRow(), 3).toString();
+        String diagnosis = medical_records_table.getValueAt(medical_records_table.getSelectedRow(), 4).toString();
+        String prescription = medical_records_table.getValueAt(medical_records_table.getSelectedRow(), 5).toString();
+        String treatment = medical_records_table.getValueAt(medical_records_table.getSelectedRow(), 6).toString();
         onGlass();
-    new Forms.MedicalRecord.Edit(id, patient_id, name, description, diagnosis, prescription, treatment, this).setVisible(true);
+        new Forms.MedicalRecord.Edit(id, patient_id, name, description, diagnosis, prescription, treatment, this).setVisible(true);
     }//GEN-LAST:event_editItemActionPerformed
 
     private void viewItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewItemActionPerformed
         String name = medical_records_table.getValueAt(medical_records_table.getSelectedRow(), 2).toString();
-        String description  = medical_records_table.getValueAt(medical_records_table.getSelectedRow(), 3).toString();
-        String diagnosis  = medical_records_table.getValueAt(medical_records_table.getSelectedRow(), 4).toString();
-        String prescription  = medical_records_table.getValueAt(medical_records_table.getSelectedRow(), 5).toString();
-        String treatment  = medical_records_table.getValueAt(medical_records_table.getSelectedRow(), 6).toString();
+        String description = medical_records_table.getValueAt(medical_records_table.getSelectedRow(), 3).toString();
+        String diagnosis = medical_records_table.getValueAt(medical_records_table.getSelectedRow(), 4).toString();
+        String prescription = medical_records_table.getValueAt(medical_records_table.getSelectedRow(), 5).toString();
+        String treatment = medical_records_table.getValueAt(medical_records_table.getSelectedRow(), 6).toString();
         onGlass();
-    new Forms.MedicalRecord.Show(name, description, diagnosis, prescription, treatment, this).setVisible(true);
+        new Forms.MedicalRecord.Show(name, description, diagnosis, prescription, treatment, this).setVisible(true);
     }//GEN-LAST:event_viewItemActionPerformed
-    
+
+    private void search_appointment_histories_fieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_search_appointment_histories_fieldKeyTyped
+      getAppointmentHistories();
+    }//GEN-LAST:event_search_appointment_histories_fieldKeyTyped
+
+    private void appointment_histories_tableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_appointment_histories_tableMousePressed
+        if(SwingUtilities.isRightMouseButton(evt)){
+            historyPop.show(appointment_histories_table, evt.getX(), evt.getY());
+        }
+    }//GEN-LAST:event_appointment_histories_tableMousePressed
+
+    private void undoneHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_undoneHistoryActionPerformed
+        
+        try (PreparedStatement pst = conn.prepareStatement("Update appointments set is_done=? where id =?")) {
+            String id = appointment_histories_table.getValueAt(appointment_histories_table.getSelectedRow(), 0).toString();
+            pst.setBoolean(1, false);
+            pst.setString(2, id);
+            pst.executeUpdate();
+            getAppointments();
+            getAppointmentHistories();
+            Notifications.getInstance().show(Notifications.Type.SUCCESS, Notifications.Location.TOP_CENTER, "Successfully mark as undone!");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_undoneHistoryActionPerformed
+
+    private void deleteHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteHistoryActionPerformed
+          int ask = JOptionPane.showConfirmDialog(null, "Are you sure you want to remove this appointment history?");
+        if (ask == JOptionPane.YES_OPTION) {
+            try (PreparedStatement pst = conn.prepareStatement("Delete  from appointments where id = ?")) {
+                String id = appointment_histories_table.getValueAt(appointment_histories_table.getSelectedRow(), 0).toString();
+                pst.setString(1, id);
+                pst.execute();
+                Notifications.getInstance().show(Notifications.Type.SUCCESS, Notifications.Location.TOP_CENTER, "Succcessfull deleted!");
+                getAppointmentHistories();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+
+        }
+    }//GEN-LAST:event_deleteHistoryActionPerformed
+
     public static void main(String args[]) {
         FlatLightLaf.setup();
         java.awt.EventQueue.invokeLater(() -> {
             new Index().setVisible(true);
         });
     }
-    
+
     public void otherComponent() {
         conn = Database.JavaConnection.getConnection();
         tabbedPane.setFont(new Font("Sanserif", Font.BOLD, 14));
         setTheGlassPane();
     }
-    
+
     public void setTheGlassPane() {
         rootPane.setGlassPane(new JComponent() {
-            
+
             @Override
             protected void paintComponent(Graphics g) {
                 g.setColor(new Color(0, 0, 0, 180));
                 g.fillRect(0, 0, getWidth(), getHeight());
                 super.paintComponent(g);
             }
-            
+
         });
     }
-    
+
     public void onGlass() {
         rootPane.getGlassPane().setVisible(true);
     }
-    
+
     public void offGlass() {
         rootPane.getGlassPane().setVisible(false);
     }
@@ -478,13 +602,17 @@ public final class Index extends javax.swing.JFrame {
     private javax.swing.JButton add_appointment_button1;
     private javax.swing.JButton add_patient_button;
     private javax.swing.JPanel appointmentBodypanel;
+    private javax.swing.JTable appointment_histories_table;
     private javax.swing.JPanel bottomPanel;
+    private javax.swing.JMenuItem deleteHistory;
     private javax.swing.JMenuItem editItem;
+    private javax.swing.JPopupMenu historyPop;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -495,6 +623,7 @@ public final class Index extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -506,16 +635,19 @@ public final class Index extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JPanel leftPanel;
     private javax.swing.JPopupMenu medicalRecordPop;
     private javax.swing.JTable medical_records_table;
     private javax.swing.JPanel patientBodypanel;
     private javax.swing.JPanel rightPanel;
     private javax.swing.JTextField search_appointment_field;
+    private javax.swing.JTextField search_appointment_histories_field;
     private javax.swing.JTextField search_medical_record_field;
     private javax.swing.JTextField search_patient_field;
     private javax.swing.JTabbedPane tabbedPane;
     private javax.swing.JPanel topPanel;
+    private javax.swing.JMenuItem undoneHistory;
     private javax.swing.JMenuItem viewItem;
     // End of variables declaration//GEN-END:variables
 
@@ -554,7 +686,7 @@ public final class Index extends javax.swing.JFrame {
             System.out.println(e.getMessage());
         }
     }
-    
+
     public void getAppointments() {
         String search = search_appointment_field.getText().trim();
         String sql = "";
@@ -565,11 +697,11 @@ public final class Index extends javax.swing.JFrame {
                     + "a.patient_id,"
                     + "p.phone,"
                     + "a.date "
-                    + "from appointments a join patients p on p.id = a.patient_id  where "
-                    + " p.name like '%" + search + "%' or "
+                    + "from appointments a join patients p on p.id = a.patient_id  where is_done =?  and "
+                    + "(p.name like '%" + search + "%' or "
                     + " p.phone like '%" + search + "%' or "
-                    + " a.date like '%" + search + "%' "
-                    + " order by id desc";
+                    + " a.date like '%" + search + "%') "
+                    + "  order by id desc";
         } else {
             sql = "Select "
                     + "a.id as 'id' ,"
@@ -577,11 +709,12 @@ public final class Index extends javax.swing.JFrame {
                     + "a.patient_id,"
                     + "p.phone,"
                     + "a.date"
-                    + " from appointments a join patients p on p.id = a.patient_id order by id desc";
+                    + " from appointments a join patients p on p.id = a.patient_id where is_done =? order by id desc";
         }
         appointmentBodypanel.removeAll();
         appointmentBodypanel.add(new Cards.TableCardAppointmentHead());
         try (PreparedStatement pst = conn.prepareStatement(sql)) {
+            pst.setBoolean(1, false);
             ResultSet rs = pst.executeQuery();
             int height = 65;
             while (rs.next()) {
@@ -591,7 +724,7 @@ public final class Index extends javax.swing.JFrame {
                 String name = rs.getString("name");
                 String phone = rs.getString("phone");
                 String date = rs.getString("date");
-                
+
                 appointmentBodypanel.add(new Cards.TableCardAppointmentData(id, patient_id, name, phone, date, this));
                 appointmentBodypanel.repaint();
                 appointmentBodypanel.revalidate();
@@ -601,7 +734,50 @@ public final class Index extends javax.swing.JFrame {
             System.out.println(e.getMessage());
         }
     }
-    
+
+    public void getAppointmentHistories() {
+        String search = search_appointment_histories_field.getText().trim();
+        String sql = "";
+        if (!search.isEmpty()) {
+            sql = "Select  "
+                    + "a.id as 'ID' ,"
+                    + "a.patient_id as 'Patient ID',"
+                    + "p.name as 'Name',"
+                    + "p.phone as 'Phone number',"
+                    + "a.date as 'Date' "
+                    + "from appointments a join patients p on p.id = a.patient_id "
+                    + "where is_done =? "
+                    + " and "
+                    + " (p.name like '%" + search + "%' or "
+                    + " p.phone like '%" + search + "%' or "
+                    + " a.date like '%" + search + "%') "
+                    + " order by id desc";
+        } else {
+            sql = "Select "
+                    + "a.id as 'ID' ,"
+                    + "a.patient_id as 'Patient ID',"
+                    + "p.name as 'Name',"
+                    + "p.phone as 'Phone number',"
+                    + "a.date as 'Date' "
+                    + " from appointments a join patients p on p.id = a.patient_id where is_done =? order by id desc";
+        }
+        try (PreparedStatement pst = conn.prepareStatement(sql)) {
+            pst.setBoolean(1, true);
+            ResultSet rs = pst.executeQuery();
+            appointment_histories_table.setModel(DbUtils.resultSetToTableModel(rs));
+            TableColumnModel columnModel = appointment_histories_table.getColumnModel();
+            for (int i = 0; i < columnModel.getColumnCount(); i++) {
+                columnModel.getColumn(i).setCellRenderer(new Components.CenterAlignTableCellRenderer());
+            }
+            appointment_histories_table.getColumnModel().getColumn(0).setMaxWidth(50);
+            appointment_histories_table.getColumnModel().getColumn(1).setMaxWidth(80);
+            appointment_histories_table.getTableHeader().setFont(new Font("Sanserif", Font.BOLD, 13));
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     public void getMedicalRecords() {
         medical_records_table.removeAll();
         String search = search_medical_record_field.getText().trim();
@@ -638,12 +814,12 @@ public final class Index extends javax.swing.JFrame {
         try (PreparedStatement pst = conn.prepareStatement(sql)) {
             ResultSet rs = pst.executeQuery();
             medical_records_table.setModel(DbUtils.resultSetToTableModel(rs));
-            
+
             TableColumnModel columnModel = medical_records_table.getColumnModel();
             for (int i = 0; i < columnModel.getColumnCount(); i++) {
                 columnModel.getColumn(i).setCellRenderer(new Components.CenterAlignTableCellRenderer());
             }
-            
+
             TableColumn descriptionColumn = medical_records_table.getColumnModel().getColumn(3);
             TableColumn diagnosisColumn = medical_records_table.getColumnModel().getColumn(4);
             TableColumn prescriptionColumn = medical_records_table.getColumnModel().getColumn(5);
@@ -655,10 +831,10 @@ public final class Index extends javax.swing.JFrame {
             medical_records_table.getColumnModel().getColumn(0).setMaxWidth(50);
             medical_records_table.getColumnModel().getColumn(1).setMaxWidth(70);
             medical_records_table.getTableHeader().setFont(new Font("Sanserif", Font.BOLD, 13));
-            
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
-    
+
 }

@@ -46,10 +46,10 @@ public final class Show extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        jPanel1.setBackground(new java.awt.Color(0, 0, 51));
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setBackground(new java.awt.Color(0, 0, 51));
+        jButton1.setBackground(new java.awt.Color(51, 51, 51));
         jButton1.setForeground(new java.awt.Color(204, 204, 204));
         jButton1.setText("Exit");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -78,7 +78,7 @@ public final class Show extends javax.swing.JFrame {
         patient_name_label.setPreferredSize(new java.awt.Dimension(190, 50));
         jPanel1.add(patient_name_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 780, 30));
 
-        description_field.setBackground(new java.awt.Color(0, 0, 51));
+        description_field.setBackground(new java.awt.Color(51, 51, 51));
         description_field.setColumns(20);
         description_field.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         description_field.setForeground(new java.awt.Color(204, 204, 204));
@@ -94,7 +94,7 @@ public final class Show extends javax.swing.JFrame {
         jLabel3.setPreferredSize(new java.awt.Dimension(190, 50));
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, -1, 30));
 
-        diagnosis_field.setBackground(new java.awt.Color(0, 0, 51));
+        diagnosis_field.setBackground(new java.awt.Color(51, 51, 51));
         diagnosis_field.setColumns(20);
         diagnosis_field.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         diagnosis_field.setForeground(new java.awt.Color(204, 204, 204));
@@ -110,7 +110,7 @@ public final class Show extends javax.swing.JFrame {
         jLabel4.setPreferredSize(new java.awt.Dimension(190, 50));
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 110, -1, 30));
 
-        prescription_field.setBackground(new java.awt.Color(0, 0, 51));
+        prescription_field.setBackground(new java.awt.Color(51, 51, 51));
         prescription_field.setColumns(20);
         prescription_field.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         prescription_field.setForeground(new java.awt.Color(204, 204, 204));
@@ -126,7 +126,7 @@ public final class Show extends javax.swing.JFrame {
         jLabel6.setPreferredSize(new java.awt.Dimension(190, 50));
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 350, -1, 30));
 
-        treatment_plan_field.setBackground(new java.awt.Color(0, 0, 51));
+        treatment_plan_field.setBackground(new java.awt.Color(51, 51, 51));
         treatment_plan_field.setColumns(20);
         treatment_plan_field.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         treatment_plan_field.setForeground(new java.awt.Color(204, 204, 204));

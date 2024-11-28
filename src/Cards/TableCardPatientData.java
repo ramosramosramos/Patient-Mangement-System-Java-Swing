@@ -1,7 +1,5 @@
 package Cards;
 
-import java.awt.Dimension;
-
 public class TableCardPatientData extends javax.swing.JPanel {
 
     Main.Index index;
@@ -19,7 +17,7 @@ String id,name,phone,address,guardian,birthdate;
         phone_label.setText(phone);
         address_label.setText(address);
         guardian_label.setText(guardian);
-        this.setPreferredSize(new Dimension(995, 60));
+     
 
     }
 
@@ -37,35 +35,35 @@ String id,name,phone,address,guardian,birthdate;
 
         setLayout(new java.awt.BorderLayout());
 
-        jPanel7.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel7.setBackground(new java.awt.Color(51, 51, 51));
         jPanel7.setForeground(new java.awt.Color(0, 0, 51));
         jPanel7.setPreferredSize(new java.awt.Dimension(995, 50));
 
         name_label.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        name_label.setForeground(new java.awt.Color(51, 51, 51));
+        name_label.setForeground(new java.awt.Color(204, 204, 204));
         name_label.setText("Name");
         name_label.setPreferredSize(new java.awt.Dimension(190, 50));
         jPanel7.add(name_label);
 
         phone_label.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        phone_label.setForeground(new java.awt.Color(51, 51, 51));
+        phone_label.setForeground(new java.awt.Color(204, 204, 204));
         phone_label.setText("Phone number");
         phone_label.setPreferredSize(new java.awt.Dimension(190, 50));
         jPanel7.add(phone_label);
 
         address_label.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        address_label.setForeground(new java.awt.Color(51, 51, 51));
+        address_label.setForeground(new java.awt.Color(204, 204, 204));
         address_label.setText("Address");
         address_label.setPreferredSize(new java.awt.Dimension(190, 50));
         jPanel7.add(address_label);
 
         guardian_label.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        guardian_label.setForeground(new java.awt.Color(51, 51, 51));
+        guardian_label.setForeground(new java.awt.Color(204, 204, 204));
         guardian_label.setText("Guardian");
         guardian_label.setPreferredSize(new java.awt.Dimension(190, 50));
         jPanel7.add(guardian_label);
 
-        jButton1.setBackground(new java.awt.Color(0, 0, 51));
+        jButton1.setBackground(new java.awt.Color(102, 102, 102));
         jButton1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(204, 204, 204));
         jButton1.setText("VIEW");
@@ -76,7 +74,7 @@ String id,name,phone,address,guardian,birthdate;
         });
         jPanel7.add(jButton1);
 
-        jButton2.setBackground(new java.awt.Color(0, 0, 204));
+        jButton2.setBackground(new java.awt.Color(0, 102, 102));
         jButton2.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(204, 204, 204));
         jButton2.setText("EDIT");

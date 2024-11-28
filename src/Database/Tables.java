@@ -33,6 +33,7 @@ public class Tables {
                 + "id int primary key auto_increment,"
                 + "patient_id int,"
                 + "date varchar(100),"
+                + "is_done boolean default false,"
                 + "foreign key (patient_id) references patients(id) on delete cascade"
                 + ")"
                 + "")) {

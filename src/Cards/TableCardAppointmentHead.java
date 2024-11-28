@@ -21,8 +21,8 @@ public class TableCardAppointmentHead extends javax.swing.JPanel {
 
         setLayout(new java.awt.BorderLayout());
 
-        jPanel7.setBackground(new java.awt.Color(0, 0, 51));
-        jPanel7.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 0, 5, 0, new java.awt.Color(255, 255, 255)));
+        jPanel7.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel7.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 255)));
         jPanel7.setForeground(new java.awt.Color(0, 0, 51));
         jPanel7.setPreferredSize(new java.awt.Dimension(993, 60));
 
@@ -50,7 +50,7 @@ public class TableCardAppointmentHead extends javax.swing.JPanel {
         jLabel4.setPreferredSize(new java.awt.Dimension(190, 50));
         jPanel7.add(jLabel4);
 
-        jLabel6.setPreferredSize(new java.awt.Dimension(230, 14));
+        jLabel6.setPreferredSize(new java.awt.Dimension(280, 14));
         jPanel7.add(jLabel6);
 
         add(jPanel7, java.awt.BorderLayout.PAGE_START);
