@@ -9,9 +9,9 @@ import java.text.SimpleDateFormat;
  */
 public class Date {
 
-    public static String getDate() {
+    public static String getDate(String formatter) {
         java.util.Date now = new java.util.Date();
-        SimpleDateFormat format = new SimpleDateFormat("MMMM-dd-YYYY");
+        SimpleDateFormat format = new SimpleDateFormat(formatter);
         String date = format.format(now);
  
         return date;

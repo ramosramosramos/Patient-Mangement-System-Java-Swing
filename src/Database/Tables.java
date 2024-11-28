@@ -33,7 +33,7 @@ public class Tables {
                 + "id int primary key auto_increment,"
                 + "patient_id int,"
                 + "date varchar(100),"
-                + "foreign key (patient_id) references patients(id)"
+                + "foreign key (patient_id) references patients(id) on delete cascade"
                 + ")"
                 + "")) {
 
@@ -46,5 +46,25 @@ public class Tables {
         }
 
     }
-      
+      public static void medicalRecords(Connection conn) {
+    try (PreparedStatement pst = conn.prepareStatement(""
+            + "CREATE TABLE IF NOT EXISTS medical_records ("
+            + "id INT PRIMARY KEY AUTO_INCREMENT, "
+            + "patient_id INT, "
+            + "description TEXT, "
+            + "diagnosis TEXT, "
+            + "prescription TEXT, "
+            + "treatment_plan TEXT, "
+            + "created_at varchar(255),"
+            + "FOREIGN KEY (patient_id) REFERENCES patients(id) ON DELETE CASCADE"
+            + ")")) {
+
+        pst.execute();
+//        System.out.println("medical_records table has been created.");
+        
+    } catch (Exception e) {
+        System.out.println("Error creating medical_records table: " + e.getMessage());
+    }
+}
+
 }

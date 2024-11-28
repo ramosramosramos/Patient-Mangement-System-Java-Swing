@@ -17,6 +17,7 @@ public class JavaConnection {
             useDatabase(conn);
             Database.Tables.patients(conn);
             Database.Tables.appointments(conn);
+            Database.Tables.medicalRecords(conn);
 //            Seeder.insertPatients(conn);
           
            return conn;
