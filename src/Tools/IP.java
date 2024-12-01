@@ -65,12 +65,12 @@ public class IP {
 
     }
     
-     public static void Notify(String SEND_TO, String MESSSAGE, boolean appear) {
+     public static void Notify(String IP_ADDRESS,String SEND_TO, String MESSSAGE, boolean appear) {
          InputStream inputStream;
         String FINAL_MESSAGE = MESSSAGE.replaceAll("\\s", "+");
         try {
 
-            String link = "http://" + getIPAddress() + ":8080/v1/sms/send/?phone=" + SEND_TO
+            String link = "http://" + IP_ADDRESS + ":8080/v1/sms/send/?phone=" + SEND_TO
                     + "&message=" + FINAL_MESSAGE;
             URL url = new URL(link);
             inputStream = url.openStream();

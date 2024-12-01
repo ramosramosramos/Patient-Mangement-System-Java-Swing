@@ -19,10 +19,13 @@ import raven.toast.Notifications;
 public final class Index extends javax.swing.JFrame {
 
     Connection conn = null;
+    String IP_ADDRESS;
 
     public Index() {
         initComponents();
         otherComponent();
+        IP_ADDRESS = Tools.IP.getIPAddress();
+        ip_address_label.setText("IP:" + IP_ADDRESS);
         getPatients();
         getMedicalRecords();
         getAppointmentHistories();
@@ -47,12 +50,16 @@ public final class Index extends javax.swing.JFrame {
         add_patient_button = new javax.swing.JButton();
         add_appointment_button = new javax.swing.JButton();
         add_appointment_button1 = new javax.swing.JButton();
+        add_appointment_button2 = new javax.swing.JButton();
+        ip_address_label = new javax.swing.JLabel();
+        add_appointment_button3 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         tabbedPane = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         search_patient_field = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
+        jButton6 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         patientBodypanel = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
@@ -65,6 +72,7 @@ public final class Index extends javax.swing.JFrame {
         jPanel10 = new javax.swing.JPanel();
         search_appointment_field = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
+        jButton7 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         appointmentBodypanel = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
@@ -76,12 +84,14 @@ public final class Index extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         search_medical_record_field = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
+        jButton8 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         medical_records_table = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
         search_appointment_histories_field = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
+        jButton9 = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         appointment_histories_table = new javax.swing.JTable();
 
@@ -154,7 +164,7 @@ public final class Index extends javax.swing.JFrame {
         );
         leftPanelLayout.setVerticalGroup(
             leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 489, Short.MAX_VALUE)
+            .addGap(0, 485, Short.MAX_VALUE)
         );
 
         getContentPane().add(leftPanel, java.awt.BorderLayout.LINE_START);
@@ -170,7 +180,7 @@ public final class Index extends javax.swing.JFrame {
         );
         rightPanelLayout.setVerticalGroup(
             rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 489, Short.MAX_VALUE)
+            .addGap(0, 485, Short.MAX_VALUE)
         );
 
         getContentPane().add(rightPanel, java.awt.BorderLayout.LINE_END);
@@ -207,6 +217,29 @@ public final class Index extends javax.swing.JFrame {
             }
         });
 
+        add_appointment_button2.setBackground(new java.awt.Color(51, 51, 51));
+        add_appointment_button2.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        add_appointment_button2.setForeground(new java.awt.Color(204, 204, 204));
+        add_appointment_button2.setText("ADD IP ADDRESS");
+        add_appointment_button2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                add_appointment_button2ActionPerformed(evt);
+            }
+        });
+
+        ip_address_label.setForeground(new java.awt.Color(204, 204, 204));
+        ip_address_label.setText("IP:address");
+
+        add_appointment_button3.setBackground(new java.awt.Color(51, 51, 51));
+        add_appointment_button3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        add_appointment_button3.setForeground(new java.awt.Color(204, 204, 204));
+        add_appointment_button3.setText("ADD IP ADDRESS");
+        add_appointment_button3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                add_appointment_button3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout bottomPanelLayout = new javax.swing.GroupLayout(bottomPanel);
         bottomPanel.setLayout(bottomPanelLayout);
         bottomPanelLayout.setHorizontalGroup(
@@ -218,17 +251,31 @@ public final class Index extends javax.swing.JFrame {
                 .addComponent(add_appointment_button, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(add_appointment_button1)
-                .addContainerGap(541, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 249, Short.MAX_VALUE)
+                .addGroup(bottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(add_appointment_button2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(add_appointment_button3, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ip_address_label, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16))
         );
         bottomPanelLayout.setVerticalGroup(
             bottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bottomPanelLayout.createSequentialGroup()
-                .addContainerGap(34, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(bottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(add_patient_button, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(add_appointment_button, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(add_appointment_button1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29))
+                .addGap(31, 31, 31))
+            .addGroup(bottomPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(add_appointment_button2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(bottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(add_appointment_button3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ip_address_label, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         getContentPane().add(bottomPanel, java.awt.BorderLayout.PAGE_END);
@@ -237,6 +284,7 @@ public final class Index extends javax.swing.JFrame {
 
         tabbedPane.setForeground(new java.awt.Color(51, 51, 51));
 
+        jPanel3.setBackground(new java.awt.Color(51, 51, 51));
         jPanel3.setLayout(new java.awt.BorderLayout());
 
         jPanel9.setBackground(new java.awt.Color(51, 51, 51));
@@ -258,8 +306,20 @@ public final class Index extends javax.swing.JFrame {
         jLabel9.setText("Use this to search patient name,phone number or guardian.");
         jPanel9.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 520, 40));
 
+        jButton6.setBackground(new java.awt.Color(0, 102, 102));
+        jButton6.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(204, 204, 204));
+        jButton6.setText("PRINT");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        jPanel9.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 20, -1, -1));
+
         jPanel3.add(jPanel9, java.awt.BorderLayout.PAGE_START);
 
+        jScrollPane1.setBackground(new java.awt.Color(51, 51, 51));
         jScrollPane1.setPreferredSize(new java.awt.Dimension(993, 100));
 
         patientBodypanel.setBackground(new java.awt.Color(51, 51, 51));
@@ -305,6 +365,7 @@ public final class Index extends javax.swing.JFrame {
 
         tabbedPane.addTab("Patients", jPanel3);
 
+        jPanel4.setBackground(new java.awt.Color(51, 51, 51));
         jPanel4.setLayout(new java.awt.BorderLayout());
 
         jPanel10.setBackground(new java.awt.Color(51, 51, 51));
@@ -327,8 +388,20 @@ public final class Index extends javax.swing.JFrame {
         jLabel13.setText("Use this to search appointment's patient ID, name,phone number or date.");
         jPanel10.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 520, 40));
 
+        jButton7.setBackground(new java.awt.Color(0, 102, 102));
+        jButton7.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jButton7.setForeground(new java.awt.Color(204, 204, 204));
+        jButton7.setText("PRINT");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        jPanel10.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 20, -1, -1));
+
         jPanel4.add(jPanel10, java.awt.BorderLayout.PAGE_START);
 
+        jScrollPane2.setBackground(new java.awt.Color(51, 51, 51));
         jScrollPane2.setPreferredSize(new java.awt.Dimension(993, 100));
 
         appointmentBodypanel.setBackground(new java.awt.Color(51, 51, 51));
@@ -368,6 +441,7 @@ public final class Index extends javax.swing.JFrame {
 
         tabbedPane.addTab("Appointments", jPanel4);
 
+        jPanel6.setBackground(new java.awt.Color(51, 51, 51));
         jPanel6.setLayout(new java.awt.BorderLayout());
 
         jPanel5.setBackground(new java.awt.Color(51, 51, 51));
@@ -389,7 +463,20 @@ public final class Index extends javax.swing.JFrame {
         jLabel12.setText("Use this to search medical record 's  patient name,diagnosis,description,prescription,treatment plan or recorder at");
         jPanel5.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 690, 40));
 
+        jButton8.setBackground(new java.awt.Color(0, 102, 102));
+        jButton8.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jButton8.setForeground(new java.awt.Color(204, 204, 204));
+        jButton8.setText("PRINT");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 20, -1, -1));
+
         jPanel6.add(jPanel5, java.awt.BorderLayout.PAGE_START);
+
+        jScrollPane3.setBackground(new java.awt.Color(51, 51, 51));
 
         medical_records_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -413,6 +500,7 @@ public final class Index extends javax.swing.JFrame {
 
         tabbedPane.addTab("Medical records", jPanel6);
 
+        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
         jPanel2.setLayout(new java.awt.BorderLayout());
 
         jPanel11.setBackground(new java.awt.Color(51, 51, 51));
@@ -434,7 +522,20 @@ public final class Index extends javax.swing.JFrame {
         jLabel14.setText("Use this to search appointment history's patient ID, name,phone number or date.");
         jPanel11.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 690, 40));
 
+        jButton9.setBackground(new java.awt.Color(0, 102, 102));
+        jButton9.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jButton9.setForeground(new java.awt.Color(204, 204, 204));
+        jButton9.setText("PRINT");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+        jPanel11.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 20, -1, -1));
+
         jPanel2.add(jPanel11, java.awt.BorderLayout.PAGE_START);
+
+        jScrollPane4.setBackground(new java.awt.Color(51, 51, 51));
 
         appointment_histories_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -522,17 +623,17 @@ public final class Index extends javax.swing.JFrame {
     }//GEN-LAST:event_viewItemActionPerformed
 
     private void search_appointment_histories_fieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_search_appointment_histories_fieldKeyTyped
-      getAppointmentHistories();
+        getAppointmentHistories();
     }//GEN-LAST:event_search_appointment_histories_fieldKeyTyped
 
     private void appointment_histories_tableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_appointment_histories_tableMousePressed
-        if(SwingUtilities.isRightMouseButton(evt)){
+        if (SwingUtilities.isRightMouseButton(evt)) {
             historyPop.show(appointment_histories_table, evt.getX(), evt.getY());
         }
     }//GEN-LAST:event_appointment_histories_tableMousePressed
 
     private void undoneHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_undoneHistoryActionPerformed
-        
+
         try (PreparedStatement pst = conn.prepareStatement("Update appointments set is_done=? where id =?")) {
             String id = appointment_histories_table.getValueAt(appointment_histories_table.getSelectedRow(), 0).toString();
             pst.setBoolean(1, false);
@@ -547,7 +648,7 @@ public final class Index extends javax.swing.JFrame {
     }//GEN-LAST:event_undoneHistoryActionPerformed
 
     private void deleteHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteHistoryActionPerformed
-          int ask = JOptionPane.showConfirmDialog(null, "Are you sure you want to remove this appointment history?");
+        int ask = JOptionPane.showConfirmDialog(null, "Are you sure you want to remove this appointment history?");
         if (ask == JOptionPane.YES_OPTION) {
             try (PreparedStatement pst = conn.prepareStatement("Delete  from appointments where id = ?")) {
                 String id = appointment_histories_table.getValueAt(appointment_histories_table.getSelectedRow(), 0).toString();
@@ -561,6 +662,36 @@ public final class Index extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_deleteHistoryActionPerformed
+
+    private void add_appointment_button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_appointment_button2ActionPerformed
+        IP_ADDRESS = Tools.IP.getIPAddress();
+        ip_address_label.setText("IP:" + IP_ADDRESS);
+    }//GEN-LAST:event_add_appointment_button2ActionPerformed
+
+    private void add_appointment_button3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_appointment_button3ActionPerformed
+        String ip = JOptionPane.showInputDialog(null, "Enter IP address");
+        if (!ip.trim().isEmpty()) {
+            IP_ADDRESS = ip;
+            ip_address_label.setText("IP:" + ip);
+        }
+
+    }//GEN-LAST:event_add_appointment_button3ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        Tools.PrintHelper.getPrintPanel(patientBodypanel);
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+      Tools.PrintHelper.getPrintPanel(appointmentBodypanel);
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+         Tools.PrintHelper.getPrintTable(medical_records_table);
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+       Tools.PrintHelper.getPrintTable(appointment_histories_table);
+    }//GEN-LAST:event_jButton9ActionPerformed
 
     public static void main(String args[]) {
         FlatLightLaf.setup();
@@ -600,6 +731,8 @@ public final class Index extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add_appointment_button;
     private javax.swing.JButton add_appointment_button1;
+    private javax.swing.JButton add_appointment_button2;
+    private javax.swing.JButton add_appointment_button3;
     private javax.swing.JButton add_patient_button;
     private javax.swing.JPanel appointmentBodypanel;
     private javax.swing.JTable appointment_histories_table;
@@ -607,6 +740,15 @@ public final class Index extends javax.swing.JFrame {
     private javax.swing.JMenuItem deleteHistory;
     private javax.swing.JMenuItem editItem;
     private javax.swing.JPopupMenu historyPop;
+    private javax.swing.JLabel ip_address_label;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -725,7 +867,7 @@ public final class Index extends javax.swing.JFrame {
                 String phone = rs.getString("phone");
                 String date = rs.getString("date");
 
-                appointmentBodypanel.add(new Cards.TableCardAppointmentData(id, patient_id, name, phone, date, this));
+                appointmentBodypanel.add(new Cards.TableCardAppointmentData(id, patient_id, name, phone, IP_ADDRESS, date, this));
                 appointmentBodypanel.repaint();
                 appointmentBodypanel.revalidate();
             }

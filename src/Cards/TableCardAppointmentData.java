@@ -8,9 +8,9 @@ import raven.toast.Notifications;
 public class TableCardAppointmentData extends javax.swing.JPanel {
 
     Main.Index index;
-String id,patient_id,name,phone,date;
+String id,patient_id,name,phone,date ,IP_ADDRESS;
     Connection conn = null;
-    public TableCardAppointmentData(String id, String patient_id, String name, String phone, String date,Main.Index index) {
+    public TableCardAppointmentData(String id, String patient_id, String name, String phone,String IP_ADDRESS, String date,Main.Index index) {
         initComponents();
         this.index = index;
         this.id = id;
@@ -18,6 +18,7 @@ String id,patient_id,name,phone,date;
         this.name = name;
         this.phone = phone;
         this.date = date;
+        this.IP_ADDRESS= IP_ADDRESS;
         patient_id_label.setText(patient_id);
         name_label.setText(name);
         phone_label.setText(phone);
@@ -107,7 +108,7 @@ String id,patient_id,name,phone,date;
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String MESSAGE = "Hello "+name+",I remind your appointment checkup this "+date+". God bless";
-        Tools.IP.Notify(phone, MESSAGE, true);
+        Tools.IP.Notify(IP_ADDRESS,phone, MESSAGE, true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
