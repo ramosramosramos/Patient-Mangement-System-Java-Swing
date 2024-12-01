@@ -220,7 +220,7 @@ public final class Index extends javax.swing.JFrame {
         add_appointment_button2.setBackground(new java.awt.Color(51, 51, 51));
         add_appointment_button2.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         add_appointment_button2.setForeground(new java.awt.Color(204, 204, 204));
-        add_appointment_button2.setText("ADD IP ADDRESS");
+        add_appointment_button2.setText("Get automatic IP ADDRESS");
         add_appointment_button2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 add_appointment_button2ActionPerformed(evt);
@@ -233,7 +233,7 @@ public final class Index extends javax.swing.JFrame {
         add_appointment_button3.setBackground(new java.awt.Color(51, 51, 51));
         add_appointment_button3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         add_appointment_button3.setForeground(new java.awt.Color(204, 204, 204));
-        add_appointment_button3.setText("ADD IP ADDRESS");
+        add_appointment_button3.setText("ManulaADD IP ADDRESS");
         add_appointment_button3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 add_appointment_button3ActionPerformed(evt);
@@ -251,10 +251,10 @@ public final class Index extends javax.swing.JFrame {
                 .addComponent(add_appointment_button, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(add_appointment_button1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 249, Short.MAX_VALUE)
-                .addGroup(bottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(add_appointment_button2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(add_appointment_button3, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 181, Short.MAX_VALUE)
+                .addGroup(bottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(add_appointment_button2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(add_appointment_button3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ip_address_label, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
@@ -280,6 +280,7 @@ public final class Index extends javax.swing.JFrame {
 
         getContentPane().add(bottomPanel, java.awt.BorderLayout.PAGE_END);
 
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setLayout(new java.awt.BorderLayout());
 
         tabbedPane.setForeground(new java.awt.Color(51, 51, 51));
