@@ -63,10 +63,12 @@ String id,name,phone,address,guardian,birthdate;
         guardian_label.setPreferredSize(new java.awt.Dimension(190, 50));
         jPanel7.add(guardian_label);
 
-        jButton1.setBackground(new java.awt.Color(102, 102, 102));
+        jButton1.setBackground(new java.awt.Color(51, 51, 51));
         jButton1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(204, 204, 204));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/circle.png"))); // NOI18N
         jButton1.setText("VIEW");
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -74,10 +76,12 @@ String id,name,phone,address,guardian,birthdate;
         });
         jPanel7.add(jButton1);
 
-        jButton2.setBackground(new java.awt.Color(0, 102, 102));
+        jButton2.setBackground(new java.awt.Color(51, 51, 51));
         jButton2.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(204, 204, 204));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/pen.png"))); // NOI18N
         jButton2.setText("EDIT");
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);

@@ -32,6 +32,7 @@ public class TableCardPatientHead extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 
         setLayout(new java.awt.BorderLayout());
@@ -65,6 +66,9 @@ public class TableCardPatientHead extends javax.swing.JPanel {
         jLabel4.setPreferredSize(new java.awt.Dimension(190, 50));
         jPanel7.add(jLabel4);
 
+        jLabel1.setPreferredSize(new java.awt.Dimension(40, 14));
+        jPanel7.add(jLabel1);
+
         jLabel6.setPreferredSize(new java.awt.Dimension(140, 14));
         jPanel7.add(jLabel6);
 
@@ -73,6 +77,7 @@ public class TableCardPatientHead extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

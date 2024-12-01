@@ -57,7 +57,7 @@ public final class Index extends javax.swing.JFrame {
         tabbedPane = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
-        search_patient_field = new javax.swing.JTextField();
+        search_patient_field = new Components.CustomSearchField();
         jLabel9 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -70,7 +70,7 @@ public final class Index extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
-        search_appointment_field = new javax.swing.JTextField();
+        search_appointment_field = new Components.CustomSearchField();
         jLabel13 = new javax.swing.JLabel();
         jButton7 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -82,14 +82,14 @@ public final class Index extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
-        search_medical_record_field = new javax.swing.JTextField();
+        search_medical_record_field = new Components.CustomSearchField();
         jLabel12 = new javax.swing.JLabel();
         jButton8 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         medical_records_table = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
-        search_appointment_histories_field = new javax.swing.JTextField();
+        search_appointment_histories_field = new Components.CustomSearchField();
         jLabel14 = new javax.swing.JLabel();
         jButton9 = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -190,6 +190,7 @@ public final class Index extends javax.swing.JFrame {
         add_patient_button.setBackground(new java.awt.Color(51, 51, 51));
         add_patient_button.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         add_patient_button.setForeground(new java.awt.Color(204, 204, 204));
+        add_patient_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/plus-sign.png"))); // NOI18N
         add_patient_button.setText("ADD PATIENT");
         add_patient_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -200,6 +201,7 @@ public final class Index extends javax.swing.JFrame {
         add_appointment_button.setBackground(new java.awt.Color(51, 51, 51));
         add_appointment_button.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         add_appointment_button.setForeground(new java.awt.Color(204, 204, 204));
+        add_appointment_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/plus-sign.png"))); // NOI18N
         add_appointment_button.setText("ADD APPOINTMENT");
         add_appointment_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -210,6 +212,7 @@ public final class Index extends javax.swing.JFrame {
         add_appointment_button1.setBackground(new java.awt.Color(51, 51, 51));
         add_appointment_button1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         add_appointment_button1.setForeground(new java.awt.Color(204, 204, 204));
+        add_appointment_button1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/plus-sign.png"))); // NOI18N
         add_appointment_button1.setText("ADD MEDICAL RECORD");
         add_appointment_button1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -233,7 +236,8 @@ public final class Index extends javax.swing.JFrame {
         add_appointment_button3.setBackground(new java.awt.Color(51, 51, 51));
         add_appointment_button3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         add_appointment_button3.setForeground(new java.awt.Color(204, 204, 204));
-        add_appointment_button3.setText("ManulaADD IP ADDRESS");
+        add_appointment_button3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/plus-sign.png"))); // NOI18N
+        add_appointment_button3.setText("Manual ADD IP ADDRESS");
         add_appointment_button3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 add_appointment_button3ActionPerformed(evt);
@@ -248,10 +252,10 @@ public final class Index extends javax.swing.JFrame {
                 .addGap(57, 57, 57)
                 .addComponent(add_patient_button, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
-                .addComponent(add_appointment_button, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addComponent(add_appointment_button, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
                 .addComponent(add_appointment_button1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 181, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
                 .addGroup(bottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(add_appointment_button2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(add_appointment_button3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -670,10 +674,14 @@ public final class Index extends javax.swing.JFrame {
     }//GEN-LAST:event_add_appointment_button2ActionPerformed
 
     private void add_appointment_button3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_appointment_button3ActionPerformed
-        String ip = JOptionPane.showInputDialog(null, "Enter IP address");
-        if (!ip.trim().isEmpty()) {
-            IP_ADDRESS = ip;
-            ip_address_label.setText("IP:" + ip);
+        try {
+            String ip = JOptionPane.showInputDialog(null, "Enter IP address");
+            if (!ip.trim().isEmpty()) {
+                IP_ADDRESS = ip;
+                ip_address_label.setText("IP:" + ip);
+            }
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
         }
 
     }//GEN-LAST:event_add_appointment_button3ActionPerformed
@@ -683,15 +691,15 @@ public final class Index extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-      Tools.PrintHelper.getPrintPanel(appointmentBodypanel);
+        Tools.PrintHelper.getPrintPanel(appointmentBodypanel);
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-         Tools.PrintHelper.getPrintTable(medical_records_table);
+        Tools.PrintHelper.getPrintTable(medical_records_table);
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-       Tools.PrintHelper.getPrintTable(appointment_histories_table);
+        Tools.PrintHelper.getPrintTable(appointment_histories_table);
     }//GEN-LAST:event_jButton9ActionPerformed
 
     public static void main(String args[]) {
