@@ -1,16 +1,14 @@
 package Cards;
 
-import java.awt.Dimension;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import raven.toast.Notifications;
 
 public class TableCardAppointmentData extends javax.swing.JPanel {
 
     Main.Index index;
-String id,patient_id,name,phone,date ,IP_ADDRESS;
+    String id, patient_id,status, name, phone, date, IP_ADDRESS;
     Connection conn = null;
-    public TableCardAppointmentData(String id, String patient_id, String name, String phone,String IP_ADDRESS, String date,Main.Index index) {
+
+    public TableCardAppointmentData(String id, String patient_id,String status, String name, String phone, String IP_ADDRESS, String date, Main.Index index) {
         initComponents();
         this.index = index;
         this.id = id;
@@ -18,7 +16,8 @@ String id,patient_id,name,phone,date ,IP_ADDRESS;
         this.name = name;
         this.phone = phone;
         this.date = date;
-        this.IP_ADDRESS= IP_ADDRESS;
+        this.status = status;
+        this.IP_ADDRESS = IP_ADDRESS;
         patient_id_label.setText(patient_id);
         name_label.setText(name);
         phone_label.setText(phone);
@@ -107,27 +106,21 @@ String id,patient_id,name,phone,date ,IP_ADDRESS;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String MESSAGE = "Hello "+name+",I remind your appointment checkup this "+date+". God bless";
-        Tools.IP.Notify(IP_ADDRESS,phone, MESSAGE, true);
+        String MESSAGE = "Good day, " +status+". "+ name + ", I would like to remind your appointment checkup this " + date + ". God bless";
+        Tools.IP.Notify(IP_ADDRESS, phone, MESSAGE, true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         index.onGlass();
         index.setEnabled(false);
-        new Forms.Appointment.Edit(id,patient_id,name,date,index).setVisible(true);
+        new Forms.Appointment.Edit(id, patient_id, name, date, index).setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        try (PreparedStatement pst = conn.prepareStatement("Update appointments set is_done=? where id =?")) {
-            pst.setBoolean(1, true);
-            pst.setString(2, id);
-            pst.executeUpdate();
-            index.getAppointments();
-            index.getAppointmentHistories();
-            Notifications.getInstance().show(Notifications.Type.SUCCESS, Notifications.Location.TOP_CENTER, "Successfully mark as done!");
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+
+        index.onGlass();
+
+        new Forms.MedicalRecord.Create( id,patient_id, name, index).setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
 

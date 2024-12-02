@@ -1,5 +1,6 @@
 package Main;
 
+import com.formdev.flatlaf.FlatDarculaLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -49,7 +50,6 @@ public final class Index extends javax.swing.JFrame {
         bottomPanel = new javax.swing.JPanel();
         add_patient_button = new javax.swing.JButton();
         add_appointment_button = new javax.swing.JButton();
-        add_appointment_button1 = new javax.swing.JButton();
         add_appointment_button2 = new javax.swing.JButton();
         ip_address_label = new javax.swing.JLabel();
         add_appointment_button3 = new javax.swing.JButton();
@@ -209,17 +209,6 @@ public final class Index extends javax.swing.JFrame {
             }
         });
 
-        add_appointment_button1.setBackground(new java.awt.Color(51, 51, 51));
-        add_appointment_button1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        add_appointment_button1.setForeground(new java.awt.Color(204, 204, 204));
-        add_appointment_button1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/plus-sign.png"))); // NOI18N
-        add_appointment_button1.setText("ADD MEDICAL RECORD");
-        add_appointment_button1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                add_appointment_button1ActionPerformed(evt);
-            }
-        });
-
         add_appointment_button2.setBackground(new java.awt.Color(51, 51, 51));
         add_appointment_button2.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         add_appointment_button2.setForeground(new java.awt.Color(204, 204, 204));
@@ -253,9 +242,7 @@ public final class Index extends javax.swing.JFrame {
                 .addComponent(add_patient_button, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(add_appointment_button, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(add_appointment_button1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 370, Short.MAX_VALUE)
                 .addGroup(bottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(add_appointment_button2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(add_appointment_button3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -269,8 +256,7 @@ public final class Index extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(bottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(add_patient_button, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(add_appointment_button, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(add_appointment_button1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(add_appointment_button, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31))
             .addGroup(bottomPanelLayout.createSequentialGroup()
                 .addContainerGap()
@@ -287,7 +273,7 @@ public final class Index extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setLayout(new java.awt.BorderLayout());
 
-        tabbedPane.setForeground(new java.awt.Color(51, 51, 51));
+        tabbedPane.setForeground(new java.awt.Color(204, 204, 204));
 
         jPanel3.setBackground(new java.awt.Color(51, 51, 51));
         jPanel3.setLayout(new java.awt.BorderLayout());
@@ -590,11 +576,6 @@ public final class Index extends javax.swing.JFrame {
         getAppointments();
     }//GEN-LAST:event_search_appointment_fieldKeyTyped
 
-    private void add_appointment_button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_appointment_button1ActionPerformed
-        onGlass();
-        new Forms.MedicalRecord.Create(this).setVisible(true);
-    }//GEN-LAST:event_add_appointment_button1ActionPerformed
-
     private void search_medical_record_fieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_search_medical_record_fieldKeyTyped
         getMedicalRecords();
     }//GEN-LAST:event_search_medical_record_fieldKeyTyped
@@ -703,7 +684,7 @@ public final class Index extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton9ActionPerformed
 
     public static void main(String args[]) {
-        FlatLightLaf.setup();
+        FlatDarculaLaf.setup();
         java.awt.EventQueue.invokeLater(() -> {
             new Index().setVisible(true);
         });
@@ -739,7 +720,6 @@ public final class Index extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add_appointment_button;
-    private javax.swing.JButton add_appointment_button1;
     private javax.swing.JButton add_appointment_button2;
     private javax.swing.JButton add_appointment_button3;
     private javax.swing.JButton add_patient_button;
@@ -750,10 +730,6 @@ public final class Index extends javax.swing.JFrame {
     private javax.swing.JMenuItem editItem;
     private javax.swing.JPopupMenu historyPop;
     private javax.swing.JLabel ip_address_label;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
@@ -846,6 +822,7 @@ public final class Index extends javax.swing.JFrame {
                     + "a.id,"
                     + "p.name,"
                     + "a.patient_id,"
+                    + "a.status,"
                     + "p.phone,"
                     + "a.date "
                     + "from appointments a join patients p on p.id = a.patient_id  where is_done =?  and "
@@ -858,6 +835,7 @@ public final class Index extends javax.swing.JFrame {
                     + "a.id as 'id' ,"
                     + "p.name,"
                     + "a.patient_id,"
+                    + "p.status,"
                     + "p.phone,"
                     + "a.date"
                     + " from appointments a join patients p on p.id = a.patient_id where is_done =? order by id desc";
@@ -872,11 +850,12 @@ public final class Index extends javax.swing.JFrame {
                 height += 65;
                 String id = rs.getString("id");
                 String patient_id = rs.getString("patient_id");
+                String status = rs.getString("status");
                 String name = rs.getString("name");
                 String phone = rs.getString("phone");
                 String date = rs.getString("date");
 
-                appointmentBodypanel.add(new Cards.TableCardAppointmentData(id, patient_id, name, phone, IP_ADDRESS, date, this));
+                appointmentBodypanel.add(new Cards.TableCardAppointmentData(id, patient_id,status, name, phone, IP_ADDRESS, date, this));
                 appointmentBodypanel.repaint();
                 appointmentBodypanel.revalidate();
             }
@@ -890,28 +869,32 @@ public final class Index extends javax.swing.JFrame {
         String search = search_appointment_histories_field.getText().trim();
         String sql = "";
         if (!search.isEmpty()) {
-            sql = "Select  "
-                    + "a.id as 'ID' ,"
-                    + "a.patient_id as 'Patient ID',"
-                    + "p.name as 'Name',"
-                    + "p.phone as 'Phone number',"
-                    + "a.date as 'Date' "
-                    + "from appointments a join patients p on p.id = a.patient_id "
-                    + "where is_done =? "
-                    + " and "
-                    + " (p.name like '%" + search + "%' or "
-                    + " p.phone like '%" + search + "%' or "
-                    + " a.date like '%" + search + "%') "
-                    + " order by id desc";
+            sql = "SELECT "
+                    + "a.id AS 'ID', "
+                    + "a.patient_id AS 'Patient ID', "
+                    + "p.name AS 'Name', "
+                    + "p.phone AS 'Phone number', "
+                    + "a.date AS 'Date' "
+                    + "FROM appointments a "
+                    + "JOIN patients p ON p.id = a.patient_id "
+                    + "WHERE is_done = ? "
+                    + "AND (p.name LIKE '%" + search + "%' "
+                    + "OR p.phone LIKE '%" + search + "%' "
+                    + "OR a.date LIKE '%" + search + "%') "
+                    + "ORDER BY a.date asc";
         } else {
-            sql = "Select "
-                    + "a.id as 'ID' ,"
-                    + "a.patient_id as 'Patient ID',"
-                    + "p.name as 'Name',"
-                    + "p.phone as 'Phone number',"
-                    + "a.date as 'Date' "
-                    + " from appointments a join patients p on p.id = a.patient_id where is_done =? order by id desc";
+            sql = "SELECT "
+                    + "a.id AS 'ID', "
+                    + "a.patient_id AS 'Patient ID', "
+                    + "p.name AS 'Name', "
+                    + "p.phone AS 'Phone number', "
+                    + "a.date AS 'Date' "
+                    + "FROM appointments a "
+                    + "JOIN patients p ON p.id = a.patient_id "
+                    + "WHERE is_done = ? "
+                    + "ORDER BY a.date asc";
         }
+
         try (PreparedStatement pst = conn.prepareStatement(sql)) {
             pst.setBoolean(1, true);
             ResultSet rs = pst.executeQuery();

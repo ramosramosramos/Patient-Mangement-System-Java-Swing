@@ -1,14 +1,17 @@
 package Forms.Patient;
 
+import com.formdev.flatlaf.FlatDarculaLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import javax.swing.JOptionPane;
 import raven.toast.Notifications;
 
 public class Create extends javax.swing.JFrame {
 
     Main.Index index;
     Connection conn = null;
+    int warning = 0;
 
     public Create(Main.Index index) {
         initComponents();
@@ -41,6 +44,8 @@ public class Create extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         phone_field = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        gender_box = new javax.swing.JComboBox();
+        status_box = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -68,7 +73,7 @@ public class Create extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 430, 130, 30));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 430, 130, 30));
 
         name_label.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         name_label.setForeground(new java.awt.Color(204, 204, 204));
@@ -156,9 +161,17 @@ public class Create extends javax.swing.JFrame {
         jLabel6.setPreferredSize(new java.awt.Dimension(190, 50));
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, -1, 30));
 
+        gender_box.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        gender_box.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select gender", "Male", "Female", "Others" }));
+        jPanel1.add(gender_box, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 300, 200, 40));
+
+        status_box.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        status_box.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select status", "Mr", "Ms", "Mrs", " " }));
+        jPanel1.add(status_box, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 350, 200, 40));
+
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
-        setSize(new java.awt.Dimension(936, 479));
+        setSize(new java.awt.Dimension(936, 472));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -182,26 +195,39 @@ public class Create extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void name_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_name_fieldActionPerformed
-    handleCreate();        // TODO add your handling code here:
+        handleCreate();        // TODO add your handling code here:
     }//GEN-LAST:event_name_fieldActionPerformed
 
     private void phone_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phone_fieldActionPerformed
-    handleCreate();        // TODO add your handling code here:
+        handleCreate();        // TODO add your handling code here:
     }//GEN-LAST:event_phone_fieldActionPerformed
 
     private void guardian_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardian_fieldActionPerformed
-    handleCreate();    
+        handleCreate();
     }//GEN-LAST:event_guardian_fieldActionPerformed
 
     private void phone_fieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_phone_fieldKeyTyped
-     if(!Character.isDigit(evt.getKeyChar())){
-         evt.consume();
-         
-     }
+        if (!Character.isDigit(evt.getKeyChar())) {
+            evt.consume();
+
+        }
+
+        if (phone_field.getText().length() >= 11) {
+            evt.consume();
+            warning++;
+        }
+        if (warning >= 1 && warning <= 2) {
+            Notifications.getInstance().show(Notifications.Type.WARNING, Notifications.Location.TOP_CENTER, "Hoy!! sumusobra kana!");
+
+        }
+        if (warning > 2) {
+            Notifications.getInstance().show(Notifications.Type.ERROR, Notifications.Location.TOP_CENTER, "Hoy!! Kupal ka ba,di ka marunong magbilang");
+        }
+
     }//GEN-LAST:event_phone_fieldKeyTyped
 
     public static void main(String args[]) {
-        FlatLightLaf.setup();
+        FlatDarculaLaf.setup();
         java.awt.EventQueue.invokeLater(() -> {
             new Create(new Main.Index()).setVisible(true);
         });
@@ -210,6 +236,7 @@ public class Create extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea address_field;
     private com.toedter.calendar.JDayChooser dayChooser;
+    private javax.swing.JComboBox gender_box;
     private javax.swing.JTextField guardian_field;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -224,6 +251,7 @@ public class Create extends javax.swing.JFrame {
     private javax.swing.JTextField name_field;
     private javax.swing.JLabel name_label;
     private javax.swing.JTextField phone_field;
+    private javax.swing.JComboBox status_box;
     private com.toedter.calendar.JYearChooser yearChooser;
     // End of variables declaration//GEN-END:variables
 
@@ -237,26 +265,46 @@ public class Create extends javax.swing.JFrame {
         String year = String.valueOf(yearChooser.getYear());
         String birthdate = year + "," + month + "," + day;
 
-        if(name.isEmpty()){
+        String gender = gender_box.getSelectedItem().toString().trim();
+        String status = status_box.getSelectedItem().toString().trim();
+
+        if (name.isEmpty()) {
             message("Name field is needed!");
             return;
         }
-        if(phone.isEmpty()){
-            message("Phone number field is needed!");
+        if (name.isEmpty()) {
+            message("Name field is needed!");
             return;
         }
-        if(address.isEmpty()){
+        if (gender.equals("Select gender")) {
+            message("Gender field is needed!");
+            return;
+        }
+        if (status.equals("Select status")) {
+            message("Status field is needed!");
+            return;
+        }
+        if (gender.equals("Others")) {
+            errorStrong("Genesis 1:27  \n" +
+"\"So God created mankind in his own image, in the image of God he created them; male and female he created them.\"\n" +
+"\n" +
+"This verse highlights the intentional creation of male and female as part of God's design.");
+            return;
+        }
+        if (address.isEmpty()) {
             message("Address field is needed!");
             return;
         }
-    
-        try (PreparedStatement pst = conn.prepareStatement("Insert into patients(name,phone,address,birthdate,guardian)"
-                + "values(?,?,?,?,?)")) {
+
+        try (PreparedStatement pst = conn.prepareStatement("Insert into patients(name,phone,address,birthdate,guardian,gender,status)"
+                + "values(?,?,?,?,?,?,?)")) {
             pst.setString(1, name);
             pst.setString(2, phone);
             pst.setString(3, address);
             pst.setString(4, birthdate);
             pst.setString(5, guardian);
+            pst.setString(6,gender_box.getSelectedItem().toString());
+            pst.setString(7, status_box.getSelectedItem().toString());
             pst.executeUpdate();
             Notifications.getInstance().show(Notifications.Type.SUCCESS, Notifications.Location.TOP_CENTER, "New patient is successfully added!");
             index.setEnabled(true);
@@ -268,8 +316,11 @@ public class Create extends javax.swing.JFrame {
             System.out.println(e.getMessage());
         }
     }
-    
-    public void message(String message){
+
+    public void message(String message) {
         Notifications.getInstance().show(Notifications.Type.WARNING, Notifications.Location.TOP_CENTER, message);
+    }
+    public void errorStrong(String message) {
+        Notifications.getInstance().show(Notifications.Type.ERROR, 1000000000, message);
     }
 }

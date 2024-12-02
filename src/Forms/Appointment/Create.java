@@ -11,9 +11,12 @@ public final class Create extends javax.swing.JFrame {
     Main.Index index;
     Connection conn = null;
 
-    public Create(Main.Index index) {
+    public Create(
+        Main.Index index) {
         initComponents();
         this.index = index;
+      
+
         conn = Database.JavaConnection.getConnection();
         Notifications.getInstance().setJFrame(this);
 //        dateChooser.setDate(new java.util.Date());
@@ -156,11 +159,10 @@ public final class Create extends javax.swing.JFrame {
         String year = String.valueOf(yearChooser.getYear());
         String date = year + "," + month + "," + day;
 
-        if(comboBox.getSelectedItem().toString().trim().equals("Select patient")){
+        if (comboBox.getSelectedItem().toString().trim().equals("Select patient")) {
             message("Patient field is needed!");
             return;
         }
-        
 
         try (PreparedStatement pst = conn.prepareStatement("Insert into appointments(patient_id,date)"
                 + "values(?,?)")) {

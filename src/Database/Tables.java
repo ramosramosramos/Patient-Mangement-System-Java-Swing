@@ -13,13 +13,15 @@ public class Tables {
                 + "birthdate varchar(255),"
                 + "phone varchar(255),"
                 + "address text,"
-                + "guardian varchar(255)"
+                + "guardian varchar(255),"
+                + "gender varchar(255),"
+                + "status varchar(255)"
                 + ")"
                 + "")) {
 
             pst.execute();
 
-//            System.out.println("Patients tabel has been created");
+            System.out.println("Patients tabel has been created");
             pst.close();
         } catch (Exception e) {
             System.out.println(e.getMessage());
